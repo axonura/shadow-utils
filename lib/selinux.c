@@ -113,7 +113,8 @@ int reset_selinux_file_context (void)
  *  Log callback for libselinux internal error reporting.
  */
 format_attr(printf, 2, 3)
-static int selinux_log_cb (int type, const char *fmt, ...) {
+//static int selinux_log_cb (int type, const char *fmt, ...) {
+static int selinux_log_cb (const char *fmt, ...) {
 	va_list ap;
 	char *buf;
 #ifdef WITH_AUDIT
@@ -163,8 +164,9 @@ static int selinux_log_cb (int type, const char *fmt, ...) {
 
 	SYSLOG ((LOG_WARN, "libselinux: %s", buf));
 
-skip_syslog:
+/* skip_syslog:
 	free (buf);
+*/
 
 	return 0;
 }
